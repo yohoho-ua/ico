@@ -1,9 +1,7 @@
 <template>
   <div class="login-wrapper border border-light">
     <form class="form-signin" @submit.prevent="login">
-       <div>
            <img src="../assets/logo.png">
-      </div>
       <br>
       <h2 class="form-signin-heading">Please sign in</h2>
       <div class="alert alert-danger" v-if="error">{{ error }}</div>
