@@ -36,7 +36,7 @@ export default {
   methods: {
     checkCurrentLogin () {
       console.log('profile current user : ' + JSON.stringify(this.currentUser))
-      if (!this.currentUser && this.$route.path !== '/') {
+      if (!this.currentUser && this.$route.path !== '/' && this.$route.path !== '/register') {
         this.$router.push('/?redirect=' + this.$route.path)
       }
     }

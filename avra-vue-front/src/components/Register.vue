@@ -1,16 +1,22 @@
 <template>
   <div class="login-wrapper border border-light">
-    <form class="form-signin" @submit.prevent="login">
+    <form class="form-register" @submit.prevent="register">
            <img src="../assets/logo.png">
       <br>
-      <h2 class="form-signin-heading">Please sign in</h2>
+      <h2 class="form-register-heading">Please register</h2>
       <div class="alert alert-danger" v-if="error">{{ error }}</div>
+      <div class="alert alert-success" v-if="msg">{{ msg }}</div>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input v-model="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input v-model="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <router-link to="/register" class="btn btn-lg btn-primary btn-block">Register</router-link>
+      <label for="confirmPassword" class="sr-only">Confirm Password</label>
+      <input v-model="confirmPassword" type="password" id="ConfirmPassword" class="form-control" placeholder="Confirm Password" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+     <div class="has_account">
+      <p class="form-register-heading">Already has an account?</p>
+      <router-link to="/login" class="btn btn-lg btn-primary btn-block">Sign in</router-link>
+      </div>
     </form>
   </div>
 </template>
@@ -19,12 +25,14 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "Login",
+  name: "Register",
   data() {
     return {
       email: "",
       password: "",
-      error: false
+      confirmPassword: "",
+      error: false,
+      msg: false
     };
   },
   computed: {
@@ -43,29 +51,34 @@ export default {
         this.$router.replace(this.$route.query.redirect || "/profile");
       }
     },
-    login() {
+    register() {
+        if(this.password !== this.confirmPassword) {
+            this.error = "Passwords do not match"
+        } else {
       this.$http
-        .post("/signin", { email: this.email, password: this.password })
-        .then(request => this.loginSuccessful(request))
-        .catch(() => this.loginFailed());
+        .post("/signup", { email: this.email, password: this.password })
+        .then(request => this.RegisterSuccessful(request))
+        .catch(() => this.RegisterFailed());
       console.log(this.email);
       console.log(this.password);
+        }
     },
-    loginSuccessful(req) {
-      if (!req.data.token) {
-        this.loginFailed();
+    RegisterSuccessful(req) {
+      if (!req.data.success) {
+        this.RegisterFailed();
         return;
       }
       this.error = false;
-      localStorage.token = req.data.token;
-      this.$store.dispatch("login");
-      this.$router.replace(this.$route.query.redirect || "/profile");
+      this.msg = req.data.msg;
+      this.$router.replace(this.$route.query.redirect || "/");
     },
 
-    loginFailed() {
-      this.error = "Login failed!";
-      this.$store.dispatch("logout");
-      delete localStorage.token;
+    RegisterFailed() {
+      if (!req.data.msg) {
+        this.error = "Register failed!"
+      } else {
+         this.error = req.data.msg 
+      }
     }
   }
 };
@@ -92,19 +105,19 @@ body {
   }
 }
 
-.form-signin {
+.form-register {
   max-width: 330px;
   padding: 10% 15px;
   margin: 0 auto;
 }
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
+.form-register .form-register-heading,
+.form-register .checkbox {
   margin-bottom: 10px;
 }
-.form-signin .checkbox {
+.form-register .checkbox {
   font-weight: normal;
 }
-.form-signin .form-control {
+.form-register .form-control {
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
@@ -112,30 +125,21 @@ body {
   padding: 10px;
   font-size: 16px;
 }
-.form-signin .form-control:focus {
+.form-register .form-control:focus {
   z-index: 2;
 }
-.form-signin input[type="email"] {
+.form-register input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-signin input[type="password"] {
+.form-register input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-.btn-logout {
-    background-color: #837A75;
-    border-color: #837A75;
-    color: #fff;
-    margin-top: 10px;
-  }
-  
-  .btn-logout:hover {
-    background-color: darken(#837A75, 20%);
-    border-color: darken(#837A75, 20%);
-    color: #fff;
-  }
+.has_account {
+  margin-top: 20px;
+}
 </style>

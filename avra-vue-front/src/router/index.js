@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
+import Register from '@/components/Register'
 import Profile from '@/components/Profile'
 import Logout from '@/components/Logout'
 import Avra from '@/components/Avra'
@@ -15,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
     },
     {
       path: '/profile',
