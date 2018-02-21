@@ -6,11 +6,11 @@ export default class User {
   static getFrom (token) {
     try {
       // verify and decode token witn secretkey, if fails or any other error - return null
-      let obj = JwtDecode(token)
+      const obj = JwtDecode(token)
       // var decoded = jwt.verify(token, 'yohohosecret')
-      // console.log('from user, token = ' + token)
-      // console.log('from user, decoded = ' + JSON.stringify(obj))
-      return new User(obj._doc)
+      console.log('from user, token = ' + token)
+      console.log('from user, decoded = ' + JSON.stringify(obj))
+      return new User(obj)
       // return new User(decoded)
     } catch (_) {
       return null
@@ -18,9 +18,9 @@ export default class User {
   }
 
   constructor (userCredentials) {
-    this.id = userCredentials._id
-    // this.admin = admin
+    this.id = userCredentials.id
     this.email = userCredentials.email
+    this.admin = userCredentials.admin
   }
 
   //   get isAdmin () {

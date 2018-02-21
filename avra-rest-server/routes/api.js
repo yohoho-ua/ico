@@ -51,7 +51,8 @@ router.post('/signin', function (req, res) {
       // check if password matches
       user.comparePassword(req.body.password, function (err, isMatch) {
         if (isMatch && !err) {
-          var token = jwt.sign(user, config.secret);
+          var payload = {id: user._id, email: user.email, admin: user.admin};
+          var token = jwt.sign(payload, config.secret);
           // return the information including token as JSON
           res.json({
             success: true,

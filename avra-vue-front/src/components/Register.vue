@@ -15,7 +15,7 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
      <div class="has_account">
       <p class="form-register-heading">Already has an account?</p>
-      <router-link to="/login" class="btn btn-lg btn-primary btn-block">Sign in</router-link>
+      <router-link to="/login" class="btn btn-lg btn-info btn-block">Sign in</router-link>
       </div>
     </form>
   </div>

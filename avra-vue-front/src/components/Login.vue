@@ -10,7 +10,7 @@
       <label for="inputPassword" class="sr-only">Password</label>
       <input v-model="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <router-link to="/register" class="btn btn-lg btn-primary btn-block">Register</router-link>
+      <router-link to="/register" class="btn btn-lg btn-info btn-block">Register</router-link>
     </form>
   </div>
 </template>
@@ -56,6 +56,7 @@ export default {
         this.loginFailed();
         return;
       }
+      console.log("token from login = " + req.data.token)
       this.error = false;
       localStorage.token = req.data.token;
       this.$store.dispatch("login");

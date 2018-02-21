@@ -60,7 +60,7 @@ export default {
         .get("/wallet/" + this.currentUser.id)
         .then(request => this.buildWalletList(request.data))
         .catch(() => {
-          alert("Something went wrong!");
+          alert("Something went wrong with getting wallets");
         });
     },
     getNew() {
@@ -71,7 +71,7 @@ export default {
           this.$router.push("/profile");
         })
         .catch(() => {
-          alert("Something went wrong!");
+          alert("Something went wrong witj getting new wallet");
         });
     },
     buildWalletList(data) {
@@ -89,7 +89,7 @@ export default {
             this.$router.push("/profile");
           })
           .catch(() => {
-            alert("Something went wrong!");
+            alert("Something went wrong with deleting wallet");
           });
       }
     }
