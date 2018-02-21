@@ -70,7 +70,7 @@ router.post('/signin', function (req, res) {
 });
 
 //For tests, later it must be restricted for anyone except admin account
-router.get('/users', passport.authenticate('jwt', {
+router.get('/user', passport.authenticate('jwt', {
   session: false
 }), function (req, res) {
   var token = getToken(req.headers);
