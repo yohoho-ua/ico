@@ -12,7 +12,7 @@
     "test2": "mocha-webpack --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js",
     "lint": "eslint --ext .js,.vue src test/unit",
     "build": "node build/build.js"
-  },``
+  },
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap-vue": "^2.0.0-rc.1",
