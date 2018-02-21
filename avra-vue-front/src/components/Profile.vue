@@ -85,6 +85,7 @@
         this.wallets = data;
       },
       walletDelete(walletId) {
+        if (confirm("Removing wallet. Are you sure?")) {
         this.$http
           .delete("/wallet/" + walletId)
           .then(response => {
@@ -93,7 +94,7 @@
           })
           .catch(() => {
             alert("Something went wrong!");
-          });
+          })}
       }
     },
     components: {
