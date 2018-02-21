@@ -5,6 +5,7 @@ import Register from '@/components/Register'
 import Profile from '@/components/Profile'
 import Logout from '@/components/Logout'
 import Avra from '@/components/Avra'
+import Admin from '@/components/Admin'
 // import Hello from '@/components/HelloWorld'
 
 Vue.use(Router)
@@ -31,6 +32,11 @@ export default new Router({
       path: '/avra',
       name: 'Avra',
       component: Avra
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin
     },
     {
       path: '/logout',

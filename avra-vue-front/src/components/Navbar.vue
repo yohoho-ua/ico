@@ -7,6 +7,7 @@
         <router-link to="/avra" class="btn btn-logout btn-sm">Avra</router-link>
         <router-link to="/profile" class="btn btn-logout btn-sm">Profile</router-link>
         <router-link to="/logout" class="btn btn-logout btn-sm">Logout</router-link>
+        <router-link to="/admin"  v-if="currentUser.admin" class="btn btn-logout btn-sm">Admin</router-link>
       </span>
   
   </nav>
