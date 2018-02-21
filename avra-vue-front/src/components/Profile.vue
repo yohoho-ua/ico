@@ -4,7 +4,6 @@
     <div class='page-header'>
       <h1>Hi, {{ currentUser.email }}</h1>
     </div>
-    </div>
   <table class="table b-table">
     <thead>
     <tr>
