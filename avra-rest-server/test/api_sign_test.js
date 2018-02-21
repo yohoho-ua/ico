@@ -20,7 +20,7 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 //Our parent block
-describe('users', () => {
+describe('Sign in / sign up', () => {
     before((done) => { //Before each test we empty the database
         User.remove({}, (err) => {
                 done();

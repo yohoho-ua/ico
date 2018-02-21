@@ -1,3 +1,8 @@
+### running mongo db service required
+```Bash
+sudo service mongod start
+```
+
 ```
 npm install
 ```
